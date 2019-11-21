@@ -1,26 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Course from './components/Course'
+import Header from './components/Header'
 
-const Header = props =>
-  <h1>{props.course}</h1>
+// const Total = props => {
+//   const total = props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises
 
-const Total = props => {
-  const total = props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises
-
-  return <p>yhteensä {total} tehtävää</p>
-}
+//   return <p>yhteensä {total} tehtävää</p>
+// }
   
 
-const Part = props =>
-  <p>{props.part.name} {props.part.exercises}</p>
-
-const Content = props => (
-  <div>
-    <Part part={props.parts[0]} />
-    <Part part={props.parts[1]} />
-    <Part part={props.parts[2]} />
-  </div>
-)
+// const Part = props =>
+//   <p>{props.part.name} {props.part.exercises}</p>
 
 const App = () => {
   const course = {
@@ -44,9 +35,14 @@ const App = () => {
     ]
   }
 
+  const rows = () => course.parts.map(part =>
+    <Course key={part.id} part={part} />
+    )
+
   return (
     <div>
-      <Course course={course} />
+        <Header course={course}/>
+        {rows()}
     </div>
   )
 }
